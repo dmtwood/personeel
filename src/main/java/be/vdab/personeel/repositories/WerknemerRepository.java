@@ -13,14 +13,14 @@ public interface WerknemerRepository extends JpaRepository<Werknemer, Long> {
      * Find the Werknemer without any Chef, a.k.a. the Big Boss
      * @return a Werknemer is present
      */
-    Optional<Werknemer> findByChefIsNull();
+    public Optional<Werknemer> findByChefIsNull();
 
     /**
      * Find Werknemer(s) sharing a Jobtitel (peers)
      * @param jobtitel differentiate wich Jobtitel
      * @return a List of Werknemer(s)
      */
-    List<Werknemer> findByJobtitel(Jobtitel jobtitel);
+    public List<Werknemer> findByJobtitel(Jobtitel jobtitel);
 
 
 }
