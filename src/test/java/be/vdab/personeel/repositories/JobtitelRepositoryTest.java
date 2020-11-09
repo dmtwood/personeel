@@ -1,10 +1,13 @@
 package be.vdab.personeel.repositories;
 
 import be.vdab.personeel.domain.Jobtitel;
+import org.aspectj.weaver.ast.Var;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+
+import java.util.List;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -30,6 +33,12 @@ public class JobtitelRepositoryTest extends AbstractTransactionalJUnit4SpringCon
     void findById() {
         Optional<Jobtitel> jobtitelById = jobtitelRepository.findById(idVanTest());
         assertThat(jobtitelById.get().getNaam()).isEqualTo("test");
+    }
+
+    @Test
+    void findAll() {
+        List<Jobtitel> jobtitels = jobtitelRepository.findAll();
+        assertThat(jobtitels).hasSize(super.countRowsInTable(JOBTITELS));
     }
 
 
