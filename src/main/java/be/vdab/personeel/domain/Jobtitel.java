@@ -10,6 +10,10 @@ import java.util.Set;
 @Table(name = "jobtitels")
 public class Jobtitel  {
 
+    /*******************/
+    // MEMBERS VARS
+    /*******************/
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -28,6 +32,21 @@ public class Jobtitel  {
     @OneToMany( mappedBy = "jobtitel")
     private Set<Werknemer> werknemers;
 
+
+    /*******************/
+    // CONSTRUCTOR
+    /*******************/
+
+    /**
+     * entity class gets a protected default constructor to prevent default public access
+     */
+    protected Jobtitel() {
+    }
+
+
+    /*******************/
+    // GETTERS & SETTERS
+    /*******************/
 
     public long getId() {
         return id;

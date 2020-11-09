@@ -1,11 +1,10 @@
 package be.vdab.personeel.domain;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
@@ -14,6 +13,10 @@ import java.util.Set;
 @Entity
 @Table(name = "werknemers")
 public class Werknemer {
+
+    /*******************/
+    // MEMBERS VARS
+    /*******************/
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +33,8 @@ public class Werknemer {
     String email;
 
     @NotNull
-    @PositiveOrZero
+    @Positive
+    @NumberFormat
     private BigDecimal salaris;
 
     @NotBlank
@@ -66,5 +70,63 @@ public class Werknemer {
     private Set<Werknemer> teamChef;
 
 
+    /*******************/
+    // CONSTRUCTOR
+    /*******************/
 
+    /**
+     * entity class gets a protected default constructor to prevent default public access
+     */
+    protected Werknemer(){
+    }
+
+
+
+    /*******************/
+    // GETTERS & SETTERS
+    /*******************/
+
+    public long getId() {
+        return id;
+    }
+
+    public String getFamilienaam() {
+        return familienaam;
+    }
+
+    public String getVoornaam() {
+        return voornaam;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public BigDecimal getSalaris() {
+        return salaris;
+    }
+
+    public String getPaswoord() {
+        return paswoord;
+    }
+
+    public LocalDate getGeboorte() {
+        return geboorte;
+    }
+
+    public int getVersie() {
+        return versie;
+    }
+
+    public Jobtitel getJobtitel() {
+        return jobtitel;
+    }
+
+    public Werknemer getChef() {
+        return chef;
+    }
+
+    public Set<Werknemer> getTeamChef() {
+        return teamChef;
+    }
 }
