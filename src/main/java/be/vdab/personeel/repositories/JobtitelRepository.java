@@ -2,8 +2,6 @@ package be.vdab.personeel.repositories;
 
 import be.vdab.personeel.domain.Jobtitel;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.security.PrivateKey;
 import java.util.List;
 import java.util.Optional;
 

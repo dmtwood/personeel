@@ -1,7 +1,6 @@
 package be.vdab.personeel.repositories;
 
 import be.vdab.personeel.domain.Jobtitel;
-import org.aspectj.weaver.ast.Var;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
@@ -25,14 +24,19 @@ public class JobtitelRepositoryTest extends AbstractTransactionalJUnit4SpringCon
 
     private long idVanTest() {
         return super.jdbcTemplate.queryForObject(
-                "select id from jobtitels where naam = 'test' ", Long.class
+                "select id from jobtitels where naam = 'Presidente' ", Long.class
         );
     }
 
     @Test
     void findById() {
         Optional<Jobtitel> jobtitelById = jobtitelRepository.findById(idVanTest());
-        assertThat(jobtitelById.get().getNaam()).isEqualTo("test");
+        assertThat(jobtitelById.get().getNaam()).isEqualTo("Presidente");
+    }
+
+    @Test
+    void findByOnbestaandeId() {
+        assertThat(jobtitelRepository.findById(-1)).isNotPresent();
     }
 
     @Test
