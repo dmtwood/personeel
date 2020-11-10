@@ -5,6 +5,7 @@ import be.vdab.personeel.domain.Werknemer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public interface WerknemerRepository extends JpaRepository<Werknemer, Long> {
 
@@ -19,7 +20,7 @@ public interface WerknemerRepository extends JpaRepository<Werknemer, Long> {
      * @param jobtitel differentiate which Jobtitel
      * @return a List of Werknemer(s)
      */
-    public List<Werknemer> findByJobtitel(Jobtitel jobtitel);
+    public Set<Werknemer> findByJobtitel(Jobtitel jobtitel);
 
 
 }

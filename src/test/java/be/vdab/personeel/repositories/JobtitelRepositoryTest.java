@@ -3,6 +3,7 @@ package be.vdab.personeel.repositories;
 import be.vdab.personeel.domain.Jobtitel;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DataJpaTest
+@DataJpaTest // creates datasource & EntityManager beans
 @Sql("/insertJobtitels.sql")
 public class JobtitelRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
 
@@ -47,3 +48,4 @@ public class JobtitelRepositoryTest extends AbstractTransactionalJUnit4SpringCon
 
 
 }
+

@@ -4,7 +4,10 @@ import be.vdab.personeel.domain.Werknemer;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.LinkedHashSet;
 import java.util.Set;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "jobtitels")
@@ -29,7 +32,7 @@ public class Jobtitel  {
      * full mapping is done in (Many) Werknemer class >> using a joinculumn on jobtitelid
      *
      */
-    @OneToMany( mappedBy = "jobtitel")
+    @OneToMany( mappedBy = "jobtitel", cascade={PERSIST, MERGE, REMOVE, REFRESH, DETACH})
     private Set<Werknemer> werknemers;
 
 
@@ -43,6 +46,11 @@ public class Jobtitel  {
     protected Jobtitel() {
     }
 
+    public Jobtitel(@NotBlank String naam, long versie) {
+        this.naam = naam;
+        this.versie = versie;
+        this.werknemers = new LinkedHashSet<>();
+    }
 
     /*******************/
     // GETTERS & SETTERS

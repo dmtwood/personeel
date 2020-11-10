@@ -2,6 +2,7 @@ package be.vdab.personeel.repositories;
 
 import be.vdab.personeel.domain.Jobtitel;
 import be.vdab.personeel.domain.Werknemer;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
+import javax.persistence.EntityManager;
 import java.util.Optional;
 import java.util.Set;
 
@@ -18,17 +20,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 
 @DataJpaTest
+@Sql("/insertJobtitels.sql")
 class WerknemerRepositoryTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     public static final String WERKNEMERS = "werknemers";
-
+    Jobtitel jobtitel;
     @Autowired
     private final WerknemerRepository werknemerRepository;
     private final JobtitelRepository jobtitelRepository;
+    EntityManager entityManager;
 
-    WerknemerRepositoryTest(WerknemerRepository wR, JobtitelRepository jR) {
+    WerknemerRepositoryTest(WerknemerRepository wR, JobtitelRepository jR, EntityManager entityManager) {
         this.werknemerRepository = wR;
         this.jobtitelRepository = jR;
+        this.entityManager = entityManager;
+    }
+
+    @BeforeEach
+    void beforeEach(){
+            jobtitel = new Jobtitel("test", 9);
+            entityManager.persist(jobtitel);
     }
 
     private long idVanBaas() {
@@ -36,12 +47,6 @@ class WerknemerRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
                 "select id from werknemers where chefid is null ", Long.class
         );
     }
-//
-//    private long idVanJobtitelPresident() {
-//        return super.jdbcTemplate.queryForObject(
-//                "select id from jobtitels where naam = 'Presidente'", Long.class
-//        );
-//    }
 
 
     @Test
@@ -50,12 +55,21 @@ class WerknemerRepositoryTest extends AbstractTransactionalJUnit4SpringContextTe
         assertThat(baas.get().getId()).isEqualTo(idVanBaas());
     }
 
-//    @Test
-//    void findByJobtitel(){
-//        Optional<Jobtitel> jobtitel = jobtitelRepository.findById(idVanBaas());
-//        assertThat(jobtitel.stream().count()).isEqualTo(super.countRowsInTableWhere(WERKNEMERS, )
-//        Set<Werknemer> werknemersMetGedeeldeJobtitel = werknemerRepository.findByJobtitel( jobtitel );
-//    }
+    @Test
+    void findByJobtitel(){
+        Set<Werknemer> crew;
+         crew = werknemerRepository.findByJobtitel(jobtitel);
+
+         int test = super.countRowsInTableWhere(WERKNEMERS, "jobtitelid = 9" );
+        System.out.println(test);
+                          assertThat(
+                                  super.countRowsInTableWhere(WERKNEMERS, "jobtitelid = 9"
+                                  )
+        ).isEqualTo(
+                crew.size()
+        );
+
+    }
 
 
 }

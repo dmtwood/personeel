@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
+import static javax.persistence.CascadeType.*;
+
 
 @Entity
 @Table(name = "werknemers")
@@ -53,7 +55,7 @@ public class Werknemer {
      * Many employees can share one Jobtitel.
      * Every Jobtitel has a Set of Werknemer
      */
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn( name = "jobtitelid", nullable = true)
     private Jobtitel jobtitel;
 
@@ -61,7 +63,7 @@ public class Werknemer {
      * this is an intern relation, every Chef is a Werknemer and can be responsible for none, one or multiple Werknemer
      */
     @Nullable
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade={PERSIST, MERGE, REMOVE, REFRESH, DETACH})
     @JoinColumn( name = "chefid", nullable = true)
     private Werknemer chef;
 
@@ -76,11 +78,11 @@ public class Werknemer {
     // CONSTRUCTOR
     /*******************/
 
-//    /**
-//     * entity class gets a protected default constructor to prevent default public access
-//     */
-//    protected Werknemer(){
-//    }
+    /**
+     * entity class gets a protected default constructor to prevent default public access
+     */
+    protected Werknemer(){
+    }
 
 
 
