@@ -89,7 +89,28 @@ public class Werknemer {
     protected Werknemer(){
     }
 
+    public Werknemer(@NotBlank String familienaam, @NotBlank String voornaam, @NotBlank @Email String email, @NotNull @Positive BigDecimal salaris, @NotBlank String paswoord, @NotNull LocalDate geboorte, int versie) {
+        this.familienaam = familienaam;
+        this.voornaam = voornaam;
+        this.email = email;
+        this.salaris = salaris;
+        this.paswoord = paswoord;
+        this.geboorte = geboorte;
+        this.versie = versie;
+    }
 
+
+    public Werknemer(@NotBlank String familienaam, @NotBlank String voornaam, @NotBlank @Email String email, @NotNull @Positive BigDecimal salaris, @NotBlank String paswoord, @NotNull LocalDate geboorte, int versie, Jobtitel jobtitel, @Nullable Werknemer chef) {
+        this.familienaam = familienaam;
+        this.voornaam = voornaam;
+        this.email = email;
+        this.salaris = salaris;
+        this.paswoord = paswoord;
+        this.geboorte = geboorte;
+        this.versie = versie;
+        this.jobtitel = jobtitel;
+        this.chef = chef;
+    }
 
     /*******************/
     // GETTERS & SETTERS

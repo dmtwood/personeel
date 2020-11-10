@@ -2,6 +2,7 @@ package be.vdab.personeel.services;
 
 import be.vdab.personeel.domain.Jobtitel;
 import be.vdab.personeel.domain.Werknemer;
+import be.vdab.personeel.exceptions.WerknemerNietGevondenException;
 import be.vdab.personeel.repositories.WerknemerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -69,6 +70,8 @@ public class DefaultWerknemerService implements WerknemerService {
     @Transactional(readOnly = false, isolation = Isolation.READ_COMMITTED)
     public void opslag(long id, BigDecimal opslag) {
         werknemerRepository.findById(id)
-                .ifPresent( werknemer -> werknemer.opslag(opslag) );
+                .orElseThrow(WerknemerNietGevondenException::new)
+                .opslag(opslag);
+//                .orElseThrow(() -> new WerknemerNietGevondenException());
     }
 }
