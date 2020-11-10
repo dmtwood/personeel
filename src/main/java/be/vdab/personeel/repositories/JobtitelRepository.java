@@ -4,9 +4,11 @@ import be.vdab.personeel.domain.Jobtitel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
-
 /**
- * CRUD Jobtitel Objects. Jobtitel class is mapped to the Jobtitel table with a primary key (id) of type long
+ * @author Dimitri.Gevers@gmail.com
+ * @version 1.00 11/10/2020
+ * CRUDs Jobtitel Objects.
+ * Jobtitel interface is mapped to the Jobtitel table.
  */
 public interface JobtitelRepository extends JpaRepository<Jobtitel, Long> {
     /**

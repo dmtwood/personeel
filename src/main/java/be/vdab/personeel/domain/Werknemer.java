@@ -12,7 +12,12 @@ import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
 
-
+/**
+ * @author Dimitri.Gevers@gmail.com
+ * @version 1.00 11/10/2020
+ * Defines Entity class Werknemer.
+ * Mapped to werknemers table.
+ */
 @Entity
 @Table(name = "werknemers")
 public class Werknemer {
@@ -132,5 +137,9 @@ public class Werknemer {
 
     public Set<Werknemer> getTeamChef() {
         return teamChef;
+    }
+
+    public void opslag(BigDecimal opslag) {
+        salaris = salaris.add(opslag);
     }
 }

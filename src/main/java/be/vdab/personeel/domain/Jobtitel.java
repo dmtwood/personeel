@@ -9,6 +9,12 @@ import java.util.Set;
 
 import static javax.persistence.CascadeType.*;
 
+/**
+ * @author Dimitri.Gevers@gmail.com
+ * @version 1.00 11/10/2020
+ * Defines Entity class Jobtitel.
+ * Mapped to jobtitels table.
+ */
 @Entity
 @Table(name = "jobtitels")
 public class Jobtitel  {
