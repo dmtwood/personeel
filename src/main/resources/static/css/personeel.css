@@ -1,0 +1,51 @@
+body {
+    font-family: "Calibri Light";
+}
+
+a {
+    color: cadetblue;
+    font-weight: bolder;
+}
+
+.bold {
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+
+.vertical {
+    display: block;
+}
+
+.horizontal {
+    display: inline-block;
+}
+
+.link
+{
+    border: solid 1px cadetblue;
+    padding: 0px 4px 0px 4px;
+    margin: 0px 2px 2px 0px;
+    width: 175px;
+    text-align: center;
+}
+
+.link:hover
+{
+    background-color: cadetblue;
+    color: white;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+input
+{
+    border:  solid 1px cadetblue;
+    color: cadetblue;
+}
+
+form
+{
+    display: inline;
+}

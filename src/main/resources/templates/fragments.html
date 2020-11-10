@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:fragment="head(title)">
+        <link rel="icon" th:href="@{/static/images/personeel.ico}"/>
+        <link rel="stylesheet" th:href="@{/static/css/personeel.css}">
+    </head>
+
+    <nav th:fragment="nav">
+        <div>
+            <a th:href="@{/}">
+                <img th:src="@{/static/images/personeel.ico}"/>
+            </a>
+
+            <form method="post" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+                    <input type="submit" value="Log uit.">
+            </form>
+        </div>
+    </nav>
+
+
+</html>
