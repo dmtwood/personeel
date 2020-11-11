@@ -31,7 +31,9 @@ class JobtitelController {
     @GetMapping
     public ModelAndView jobtitel() {
         ModelAndView mAV = new ModelAndView(JOBTITELS);
-        mAV.addObject( JOBTITELS, jobtitelService.findAll() );
+        mAV.addObject(
+                JOBTITELS,
+                jobtitelService.findAll() );
         return mAV;
     }
 
@@ -43,12 +45,15 @@ class JobtitelController {
         jobtitel.ifPresent(
                 jobtitel1 -> mAV.addObject(
                         JOBTITEL,
-                        jobtitel1)
+                        jobtitel1
+                )
         );
         jobtitel.ifPresent(
                 jobtitel1 -> mAV.addObject(
                         WERKNEMERS,
-                        mAV.addObject(WERKNEMERS,werknemerService.findByJobtitel(jobtitel1))
+                        mAV.addObject(
+                                WERKNEMERS,
+                                werknemerService.findByJobtitel( jobtitel1 ) )
                 )
         );
 
