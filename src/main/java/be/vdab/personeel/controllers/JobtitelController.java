@@ -11,13 +11,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
+/**
+ * @author Dimitri.Gevers@gmail.com
+ * @version 1.00 11/10/2020
+ * Maps jobtitels ("/jobtitels") & jobtitel ("/jobtitels/id") requests to jobtitels.html
+ */
 @Controller
 @RequestMapping("/jobtitels")
 class JobtitelController {
 
     private static final String JOBTITEL = "jobtitel";
     private static final String JOBTITELS = "jobtitels";
-    private static final String WERKNEMER = "werknemer";
     private static final String WERKNEMERS = "werknemers";
 
     private final JobtitelService jobtitelService;
