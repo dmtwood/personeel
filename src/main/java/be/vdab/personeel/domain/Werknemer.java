@@ -68,7 +68,7 @@ public class Werknemer {
      * this is an intern relation, every Chef is a Werknemer and can be responsible for none, one or multiple Werknemer
      */
     @Nullable
-    @ManyToOne(fetch = FetchType.LAZY, cascade={PERSIST, MERGE, REMOVE, REFRESH, DETACH})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn( name = "chefid", nullable = true)
     private Werknemer chef;
 

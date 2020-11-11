@@ -38,7 +38,7 @@ public class Jobtitel  {
      * full mapping is done in (Many) Werknemer class >> using a joinculumn on jobtitelid
      *
      */
-    @OneToMany( mappedBy = "jobtitel", cascade={PERSIST, MERGE, REMOVE, REFRESH, DETACH})
+    @OneToMany( mappedBy = "jobtitel")
     private Set<Werknemer> werknemers;
 
 
