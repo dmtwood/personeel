@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments::head(title=${werknemer.voornaam} + ' ' + ${werknemer.familienaam} )"></head>
+
+<body>
+
+    <nav th:replace="fragments::nav"></nav>
+
+    <h1 th:text="|${werknemer.voornaam} ${werknemer.familienaam}|"></h1>
+
+    <div>Voornaam</div>
+    <div class="bold" th:text="${werknemer.voornaam}"></div>
+
+    <div>Familienaam</div>
+    <div class="bold" th:text="${werknemer.familienaam}"></div>
+
+    <div>Email adres</div>
+    <div class="bold" th:text="${werknemer.email}"></div>
+
+    <div>Salaris</div>
+    <div class="bold" th:text="${werknemer.salaris}"></div>
+
+    <div>Jobtitel</div>
+    <div class="bold" th:text="${werknemer.jobtitel.naam}"></div>
+
+    <div>Geboorte:</div>
+    <div class="bold" th:text="${werknemer.geboorte}"></div>
+
+
+    <div th:if="${werknemer.chef != null}">
+        <div>Chef</div>
+        <a class="bold" th:text="|${werknemer.chef.voornaam} ${werknemer.chef.familienaam}|" th:href="@{/werknemer/{id} (id=${werknemer.chef.id})}"></a>
+    </div>
+
+    <div th:if="${!werknemer.teamChef.isEmpty()}">Ondergeschikten</div>
+    <div th:each="ondergeschikte :${werknemer.teamChef}">
+        <a class="bold" th:text="|${ondergeschikte.voornaam} ${ondergeschikte.familienaam}|" th:href="@{/werknemer/{id} (id=${ondergeschikte.id})}"></a>
+    </div>
+
+
+    <div>Foto</div>
+    <img th:src="@{/images/{id}.jpg (id=${werknemer.id})}" th:alt="|${werknemer.voornaam} ${werknemer.familienaam}|"/>
+
+    <div class="bold" >
+        <a class="link horizontal" th:href="@{/werknemer/{id}/opslag (id=${werknemer.id})}">Opslag</a>
+    </div>
+
+
+</body>
+</html>

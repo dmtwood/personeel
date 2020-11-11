@@ -46,11 +46,27 @@ class WerknemerController {
     }
 
 
+    @GetMapping("{optWerknemer}")
+    public ModelAndView werknemer(
+            @PathVariable Optional<Werknemer> optWerknemer
+    ) {
+        ModelAndView mAV = new ModelAndView(WERKNEMER);
+        optWerknemer.ifPresent(
+                werknemer -> mAV.addObject(
+                        WERKNEMER,
+                        werknemer
+                )
+        );
+        return mAV;
+    }
+
+
     @GetMapping("{optWerknemer}/opslag")
     public ModelAndView werknemerOpslag(
             @PathVariable Optional<Werknemer> optWerknemer,
             @Valid OpslagForm opslagForm,
-            Errors errors) {
+            Errors errors
+    ) {
         ModelAndView mAV = new ModelAndView(OPSLAG);
 
         mAV.addObject(OPSLAG)
@@ -70,8 +86,8 @@ class WerknemerController {
             @PathVariable Long id,
             RedirectAttributes redirectAttributes,
             @Valid OpslagForm opslagForm,
-            Errors errors) {
-
+            Errors errors
+    ) {
         redirectAttributes.addAttribute("id", id);
 
         if( ! errors.hasErrors() ) {
