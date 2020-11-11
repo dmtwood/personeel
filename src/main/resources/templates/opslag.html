@@ -1,0 +1,32 @@
+<! doctype html>
+
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments::head(title='Geef opslag in voor ' + ${werknemer.voornaam} + ' ' + ${werknemer.familienaam})"></head>
+
+<body>
+
+    <nav th:replace="fragments::nav"></nav>
+
+    <h1 th:text="|Opslag voor ${werknemer.voornaam}  ${werknemer.familienaam}|"></h1>
+
+    <div> Huidig salaris </div>
+    <div class="bold" th:text="${werknemer.salaris}"></div>
+
+    <div> Bedrag </div>
+    <form
+            th:action="@{/werknemer/{id}/opslag (id=${werknemer.id})}"
+            method="post"
+            th:object="${opslagForm}">
+
+        <input th:field="*{opslag}" type="number" required min="1" autofocus>
+
+        <input type="submit" th:value="Opslag">
+
+        <span th:errors="*{opslag}"></span>
+    </form>
+
+
+</body>
+
+</html>

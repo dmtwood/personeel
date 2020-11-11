@@ -13,9 +13,7 @@
     <h1> Menu </h1>
 
     <ul>
-        <li sec:authorize-url="/geluk">
-            <a th:href="@{/start}"> Startpagina </a>
-        </li>
+
 
         <!-- shown only when user is not logged in -->
         <li sec:authorize="isAnonymous()">
@@ -24,9 +22,12 @@
 
         <!-- shown only when user is logged in -->
         <form sec:authorize="isAuthenticated()" method="post" th:action="@{/logout}">
-            <button>
-                <span sec:authorization="name"> uitloggen </span>
-            </button>
+
+
+            <a class="link vertical" th:href="@{/werknemer}">Werknemershiërarchie</a>
+            <a class="link vertical" th:href="@{/jobtitels}">Jobtitels</a>
+
+
         </form>
     </ul>
 

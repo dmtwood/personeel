@@ -19,13 +19,13 @@
     <div class="bold" th:text="${werknemer.email}"></div>
 
     <div>Salaris</div>
-    <div class="bold" th:text="${werknemer.salaris}"></div>
+    <div class="bold" th:text="${#numbers.formatDecimal(werknemer.salaris, 0, 'POINT', 2, 'COMMA')}"></div>
 
     <div>Jobtitel</div>
     <div class="bold" th:text="${werknemer.jobtitel.naam}"></div>
 
     <div>Geboorte:</div>
-    <div class="bold" th:text="${werknemer.geboorte}"></div>
+    <div class="bold" th:text="${#temporals.format(werknemer.geboorte, 'd-M-yyyy')}"></div>
 
 
     <div th:if="${werknemer.chef != null}">

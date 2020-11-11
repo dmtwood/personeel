@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .mvcMatchers("/","/login").permitAll()
                         .mvcMatchers("/start").hasAuthority("gebruiker")
         );
+//        http.formLogin().successForwardUrl("/start");
         http.logout().logoutSuccessUrl("/");
     }
 

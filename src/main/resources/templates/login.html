@@ -15,7 +15,7 @@
 <h1> Login </h1>
 <form th:action="@{/login}" method="post">
     <input name="username" required autofocus placeholder="gebruikersnaam">
-    <input name="password" required placeholder="paswoord">
+    <input name="password" required placeholder="paswoord" type="password">
     <button> <span sec:authorization="name"> inloggen </span> </button>
 </form>
 
