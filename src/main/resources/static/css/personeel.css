@@ -1,9 +1,10 @@
 body {
     font-family: "Calibri Light";
+    background-color: wheat;
 }
 
 a {
-    color: cadetblue;
+    color: rebeccapurple;
     font-weight: bolder;
 }
 
@@ -22,7 +23,7 @@ a {
 
 .link
 {
-    border: solid 1px cadetblue;
+    border: solid 1px rebeccapurple;
     padding: 0px 4px 0px 4px;
     margin: 0px 2px 2px 0px;
     width: 175px;
@@ -31,7 +32,7 @@ a {
 
 .link:hover
 {
-    background-color: cadetblue;
+    background-color: rebeccapurple;
     color: white;
 }
 

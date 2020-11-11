@@ -25,8 +25,15 @@ import java.util.Set;
 @Transactional(readOnly = true, isolation = Isolation.READ_COMMITTED)
 public class DefaultWerknemerService implements WerknemerService {
 
+    /*******************/
+    // MEMBERS VARS
+    /*******************/
     private final WerknemerRepository werknemerRepository;
 
+
+    /*******************/
+    // CONSTRUCTOR
+    /*******************/
     public DefaultWerknemerService(WerknemerRepository werknemerRepository) {
         this.werknemerRepository = werknemerRepository;
     }

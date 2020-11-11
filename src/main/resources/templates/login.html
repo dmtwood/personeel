@@ -5,10 +5,9 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.thymeleaf.org">
 
-<head>
-    <title> Login pagina -</title>
-    <link rel="stylesheet" th:href="@{/static/css/personeel.css}">
-</head>
+<head th:replace="fragments::head(title='Login Pagina')"></head>
+<body>
+<nav th:replace="fragments::nav"></nav>
 
 <body>
 

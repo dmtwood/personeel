@@ -8,6 +8,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 import javax.sql.DataSource;
 
+/**
+ * @author Dimitri.Gevers@gmail.com
+ * @version 1.00 11/11/2020
+ * Defines user authorization using email-addresses and encrypted passwords.
+ */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -42,9 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 requests -> requests
                         // root and login URI have global access
                         .mvcMatchers("/","/login").permitAll()
-                        .mvcMatchers("/start").hasAuthority("gebruiker")
+                        .mvcMatchers("/jobtitels","/werknemer").hasAuthority("gebruiker")
         );
-//        http.formLogin().successForwardUrl("/start");
         http.logout().logoutSuccessUrl("/");
     }
 

@@ -20,8 +20,15 @@ import java.util.Optional;
 @Transactional( readOnly = true, isolation = Isolation.READ_COMMITTED)
 public class DefaultJobtitelService implements JobtitelService {
 
+    /*******************/
+    // MEMBERS VARS
+    /*******************/
     private final JobtitelRepository jobtitelRepository;
 
+
+    /*******************/
+    // CONSTRUCTOR
+    /*******************/
     public DefaultJobtitelService(JobtitelRepository jobtitelRepository) {
         this.jobtitelRepository = jobtitelRepository;
     }

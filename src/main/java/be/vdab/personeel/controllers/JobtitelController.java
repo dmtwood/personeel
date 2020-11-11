@@ -14,24 +14,41 @@ import java.util.Optional;
 /**
  * @author Dimitri.Gevers@gmail.com
  * @version 1.00 11/10/2020
- * Maps jobtitels ("/jobtitels") & jobtitel ("/jobtitels/id") requests to jobtitels.html
+ * Maps jobtitels- ("/jobtitels") and jobtitel- ("/jobtitels/id") requests to jobtitels.html.
  */
 @Controller
 @RequestMapping("/jobtitels")
 class JobtitelController {
 
+    /*******************/
+    // MEMBERS VARS
+    /*******************/
     private static final String JOBTITEL = "jobtitel";
-    private static final String JOBTITELS = "jobtitels";
-    private static final String WERKNEMERS = "werknemers";
-
     private final JobtitelService jobtitelService;
     private final WerknemerService werknemerService;
 
+    private static final String JOBTITELS = "jobtitels";
+    private static final String WERKNEMERS = "werknemers";
+
+
+    /*******************/
+    // CONSTRUCTOR
+    /*******************/
     public JobtitelController(JobtitelService jobtitelService, WerknemerService werknemerService) {
         this.jobtitelService = jobtitelService;
         this.werknemerService = werknemerService;
     }
 
+
+    /*******************/
+    // MAPPINGS
+    /*******************/
+    /**
+     * Handles requests to /jobtitels.
+     * Searches all jobtitels and adds them to ModelAndView jobtitels.
+     * The Model then makes links to /jobtitels/{jobtitel} ,handled by specJobtitel method in this class.
+     * @return ModelAndView jobtitels.html with all jobtitels.
+     */
     @GetMapping
     public ModelAndView jobtitel() {
         ModelAndView mAV = new ModelAndView(JOBTITELS);
@@ -41,6 +58,11 @@ class JobtitelController {
         return mAV;
     }
 
+    /**
+     * Handles requests to /jobtitels/{jobtitel}.
+     * Searches all werknemers with the chosen jobtitel and adds them with the jobtitel to ModelAndView jobtitels
+     * @return ModelAndView jobtitels.html with the searched jobtitel and its werknemers.
+     */
     @GetMapping("{jobtitel}")
     public ModelAndView specJobtitel(@PathVariable Optional<Jobtitel> jobtitel) {
         ModelAndView mAV = new ModelAndView(JOBTITELS);

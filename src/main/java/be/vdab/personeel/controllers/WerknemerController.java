@@ -15,10 +15,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.Optional;
 
-
+/**
+ * @author Dimitri.Gevers@gmail.com
+ * @version 1.00 11/11/2020
+ * Maps President- ("/werknemer), werknemer- ("/werknemer/optwerknemer") and opslag- ("/werknemer/optwerknemer/opslag") requests to werknemer.html.
+ */
 @Controller
 @RequestMapping("/werknemer")
 class WerknemerController {
+
+    /*******************/
+    // MEMBERS VARS
+    /*******************/
+    private final WerknemerService werknemerService;
 
     private static final String WERKNEMER = "werknemer";
     private static final String OPSLAG = "opslag";
@@ -26,14 +35,24 @@ class WerknemerController {
     private static final String REDIRECT_WERNEMER_OPSLAG = "redirect:/werknemer/{id}/opslag";
 
 
-    private final WerknemerService werknemerService;
-
-
+    /*******************/
+    // CONSTRUCTOR
+    /*******************/
     public WerknemerController(WerknemerService werknemerService) {
         this.werknemerService = werknemerService;
     }
 
 
+    /*******************/
+    // MAPPINGS
+    /*******************/
+
+    /**
+     * Searches the President (werknemer with highest hierarchy) and adds him to ModelAndView werknemer.
+     * The Model then makes links to all werknemers that report to the President as /werknemer/{id}.
+     * Handles requests to /werknemer.
+     * @return ModelAndView werknemer.html with Werknemer President if present.
+     */
     @GetMapping
     public ModelAndView findPresident() {
         ModelAndView mAV = new ModelAndView(WERKNEMER);
@@ -48,6 +67,14 @@ class WerknemerController {
     }
 
 
+    /**
+     * Searches a werknemer and adds him to ModelAndView werknemer.
+     * The Model then makes links to his superior as /werknemer/{id}.
+     * The Model then makes links to all werknemers that report to him as /werknemer/{id}.
+     * Handles requests to /werknemer/{optWerknemer}.
+     * @param           optWerknemer The werknemer clicked to view his details. PathVariable.
+     * @return ModelAndView werknemer.html with the searched Werknemer, his boss and his team-members, if present.
+     */
     @GetMapping("{optWerknemer}")
     public ModelAndView werknemer(
             @PathVariable Optional<Werknemer> optWerknemer
@@ -63,6 +90,15 @@ class WerknemerController {
     }
 
 
+    /**
+     * Adds empty Opslagform for this Werknemer to ModelAndView opslag.
+     * The Model then takes input posts it to postOpslag method, in this class.
+     * Handles requests to /werknemer/{optWerknemer}/opslag.
+     * @param optWerknemer      The Werknemer getting a raise.
+     * @param opslagForm        The form that handles the amount inputted as raise.
+     * @param errors            Catches possible input errors in form.
+     * @return ModelAndView opslag.html with the searched Werknemer a form to handle a raise input.
+     */
     @GetMapping("{optWerknemer}/opslag")
     public ModelAndView werknemerOpslag(
             @PathVariable Optional<Werknemer> optWerknemer,
@@ -83,6 +119,14 @@ class WerknemerController {
     }
 
 
+    /**
+     * Executes a raise.
+     * @param id                    The id of the Werknemer getting a raise.
+     * @param redirectAttributes    Sets the {id} as attribute for redirection to werknemer to after performing raise.
+     * @param opslagForm            Form holding value of the raise.
+     * @param errors                Form errors, if any.
+     * @return
+     */
     @PostMapping("{id}/opslag")
     public String postOpslag(
             @PathVariable Long id,
@@ -99,6 +143,7 @@ class WerknemerController {
         return REDIRECT_WERNEMER_OPSLAG;
 
     }
+
 }
 
 
